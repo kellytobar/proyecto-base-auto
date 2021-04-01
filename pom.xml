@@ -90,6 +90,27 @@
     </dependencies>
 	<build>
 		<plugins>
+			<plugin> <!-- ejecución el comando verify y genere evidencias -->
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>2.21.0</version>
+				<configuration>
+					<includes>
+						<include>**/test/**/*.java</include>
+					</includes>
+					<systemPropertyVariables>
+						<webdriver.base.url>${webdriver.base.url}</webdriver.base.url>
+						<surefire.security.manager>java.lang.SecurityManager</surefire.security.manager>
+					</systemPropertyVariables>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>integration-test</goal>
+							<goal>verify</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin><!--ejecución el comando verify y genere evidencias -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
